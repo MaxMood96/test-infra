@@ -16,7 +16,7 @@
 # NOTE: we attempt to avoid unnecessary tools and image layers while
 # supporting kubernetes builds, kind installation, etc.
 
-FROM debian:bullseye
+FROM debian:11
 
 # arg that specifies the image name (for debugging)
 ARG IMAGE_ARG
