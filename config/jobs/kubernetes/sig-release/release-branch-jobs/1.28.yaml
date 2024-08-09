@@ -319,7 +319,7 @@ periodics:
       - --test-cmd-name=ClusterLoaderV2
       - --timeout=120m
       - --use-logexporter
-      - --logexporter-gcs-path=gs://sig-scalability-logs/$(JOB_NAME)/$(BUILD_ID)
+      - --logexporter-gcs-path=gs://k8s-infra-scalability-tests-logs/$(JOB_NAME)/$(BUILD_ID)
       command:
       - runner.sh
       - /workspace/scenarios/kubernetes_e2e.py
@@ -575,13 +575,11 @@ presubmits:
       - args:
         - --build=quick
         - --cluster=
-        - --extract=local
         - --gcp-node-image=gci
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=30
         - --provider=gce
         - --env=ENABLE_CACHE_MUTATION_DETECTOR=true
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-e2e-gce
         - --test_args=--ginkgo.skip=\[Driver:.gcepd\]|\[Slow\]|\[Serial\]|\[Disruptive\]|\[Flaky\]|\[Feature:.+\] --minStartupPods=8
         - --timeout=80m
         command:
@@ -625,13 +623,11 @@ presubmits:
       - args:
         - --build=quick
         - --cluster=
-        - --extract=local
         - --gcp-node-image=gci
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=30
         - --provider=gce
         - --env=ENABLE_CACHE_MUTATION_DETECTOR=true
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-e2e-gce-cos-canary
         - --test_args=--ginkgo.skip=\[Driver:.gcepd\]|\[Slow\]|\[Serial\]|\[Disruptive\]|\[Flaky\]|\[Feature:.+\] --minStartupPods=8
         - --timeout=80m
         command:
@@ -745,13 +741,11 @@ presubmits:
         - --env=KUBE_NODE_OS_DISTRIBUTION=ubuntu
         - --env=KUBE_GCE_NODE_IMAGE=ubuntu-2204-jammy-v20220712a
         - --env=KUBE_GCE_NODE_PROJECT=ubuntu-os-cloud
-        - --extract=local
         - --gcp-master-image=ubuntu
         - --gcp-node-image=ubuntu
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=30
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-e2e-gce-canary
         - --test_args=--ginkgo.skip=\[Driver:.gcepd\]|\[Slow\]|\[Serial\]|\[Disruptive\]|\[Flaky\]|\[Feature:.+\] --minStartupPods=8
         - --timeout=80m
         command:
@@ -805,13 +799,11 @@ presubmits:
         - --env=KUBE_NODE_OS_DISTRIBUTION=ubuntu
         - --env=KUBE_GCE_NODE_IMAGE=ubuntu-2204-jammy-v20220712a
         - --env=KUBE_GCE_NODE_PROJECT=ubuntu-os-cloud
-        - --extract=local
         - --gcp-master-image=ubuntu
         - --gcp-node-image=ubuntu
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=1
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-e2e-gce-serial
         - --test_args=--ginkgo.focus=\[Serial\]|\[Disruptive\] --ginkgo.skip=\[Driver:.gcepd\]|\[Slow\]|\[Flaky\]|\[Feature:.+\] --minStartupPods=8
         - --timeout=500m
         command:
@@ -858,14 +850,12 @@ presubmits:
         - --env=KUBE_FEATURE_GATES=DisableCloudProviders=true,DisableKubeletCloudCredentialProviders=true
         - --env=CLOUD_PROVIDER_FLAG=external
         - --env=ENABLE_AUTH_PROVIDER_GCP=true
-        - --extract=local
         - --gcp-master-image=gci
         - --gcp-node-image=gci
         - --gcp-nodes=4
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=30
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-e2e-gce-cloud-provider-disabled
         - --test_args=--ginkgo.skip=\[Driver:.gcepd\]|\[Slow\]|\[Serial\]|\[Disruptive\]|\[Flaky\]|\[Feature:.+\] --minStartupPods=8
         - --timeout=80m
         command:
@@ -910,14 +900,12 @@ presubmits:
       - args:
         - --build=quick
         - --cluster=
-        - --extract=local
         - --gcp-node-image=gci
         - --gcp-nodes=2
         - --gcp-project=k8s-jkns-pr-gce-gpus
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=30
         - --provider=gce
-        - --stage=gs://k8s-release-pull/ci/pull-kubernetes-e2e-gce-device-plugin-gpu
         - --test_args=--ginkgo.focus=\[Feature:GPUDevicePlugin\] --minStartupPods=8
         - --timeout=60m
         command:
@@ -961,13 +949,11 @@ presubmits:
       - args:
         - --build=quick
         - --cluster=
-        - --extract=local
         - --env=LOG_DUMP_SYSTEMD_SERVICES=containerd
         - --gcp-node-image=gci
         - --gcp-zone=us-west1-b
         - --ginkgo-parallel=30
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-e2e-containerd-gce
         - --test_args=--ginkgo.skip=\[Slow\]|\[Serial\]|\[Disruptive\]|\[Flaky\]|\[Feature:.+\]|\[NodeFeature:RuntimeHandler\] --minStartupPods=8
         - --timeout=80m
         command:
@@ -1334,14 +1320,12 @@ presubmits:
         - --cluster=
         - --env=HEAPSTER_MACHINE_TYPE=e2-standard-8
         - --env=KUBEMARK_APISERVER_TEST_ARGS=--max-requests-inflight=80 --max-mutating-requests-inflight=0 --profiling --contention-profiling
-        - --extract=local
         - --flush-mem-after-build=true
         - --gcp-node-image=gci
         - --gcp-nodes=100
         - --gcp-project-type=scalability-project
         - --gcp-zone=us-east1-b
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-e2e-gce-100-performance
         - --tear-down-previous
         - --env=CL2_ENABLE_DNS_PROGRAMMING=true
         - --env=CL2_SCHEDULER_THROUGHPUT_THRESHOLD=0
@@ -1366,7 +1350,7 @@ presubmits:
         - --test-cmd-name=ClusterLoaderV2
         - --timeout=100m
         - --use-logexporter
-        - --logexporter-gcs-path=gs://sig-scalability-logs/$(JOB_NAME)/$(BUILD_ID)
+        - --logexporter-gcs-path=gs://k8s-infra-scalability-tests-logs/$(JOB_NAME)/$(BUILD_ID)
         command:
         - runner.sh
         - /workspace/scenarios/kubernetes_e2e.py
@@ -1413,7 +1397,6 @@ presubmits:
       - args:
         - --build=quick
         - --cluster=
-        - --extract=local
         - --flush-mem-after-build=true
         - --gcp-master-size=n2-standard-4
         - --gcp-node-size=e2-standard-8
@@ -1425,7 +1408,6 @@ presubmits:
         - --kubemark-master-size=n2-standard-16
         - --env=KUBEMARK_APISERVER_TEST_ARGS=--max-requests-inflight=160 --max-mutating-requests-inflight=0 --profiling --contention-profiling
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-kubemark-e2e-gce-big
         - --tear-down-previous
         - --test=false
         - --test_args=--ginkgo.focus=xxxx
@@ -1446,7 +1428,7 @@ presubmits:
         - --test-cmd-name=ClusterLoaderV2
         - --timeout=100m
         - --use-logexporter
-        - --logexporter-gcs-path=gs://sig-scalability-logs/$(JOB_NAME)/$(BUILD_ID)
+        - --logexporter-gcs-path=gs://k8s-infra-scalability-tests-logs/$(JOB_NAME)/$(BUILD_ID)
         command:
         - runner.sh
         - /workspace/scenarios/kubernetes_e2e.py
@@ -1493,7 +1475,6 @@ presubmits:
       - args:
         - --build=quick
         - --cluster=
-        - --extract=local
         - --flush-mem-after-build=true
         - --gcp-node-size=e2-standard-8
         - --gcp-nodes=84
@@ -1503,7 +1484,6 @@ presubmits:
         - --kubemark-nodes=5000
         - --kubemark-master-size=n2-standard-64
         - --provider=gce
-        - --stage=gs://kubernetes-release-pull/ci/pull-kubernetes-kubemark-e2e-gce-scale
         - --env=KUBEMARK_APISERVER_TEST_ARGS=--max-requests-inflight=640 --max-mutating-requests-inflight=0 --profiling --contention-profiling
         - --test=false
         - --test_args=--ginkgo.focus=xxxx
@@ -2004,7 +1984,7 @@ presubmits:
         - --test-cmd-name=ClusterLoaderV2
         - --timeout=100m
         - --use-logexporter
-        - --logexporter-gcs-path=gs://sig-scalability-logs/$(JOB_NAME)/$(BUILD_ID)
+        - --logexporter-gcs-path=gs://k8s-infra-scalability-tests-logs/$(JOB_NAME)/$(BUILD_ID)
         command:
         - runner.sh
         - /workspace/scenarios/kubernetes_e2e.py
@@ -2075,7 +2055,7 @@ presubmits:
         - --test-cmd-name=ClusterLoaderV2
         - --timeout=100m
         - --use-logexporter
-        - --logexporter-gcs-path=gs://sig-scalability-logs/$(JOB_NAME)/$(BUILD_ID)
+        - --logexporter-gcs-path=gs://k8s-infra-scalability-tests-logs/$(JOB_NAME)/$(BUILD_ID)
         command:
         - runner.sh
         - /workspace/scenarios/kubernetes_e2e.py

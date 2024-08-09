@@ -1,6 +1,8 @@
 dashboard_groups:
 - name: sig-etcd
   dashboard_names:
+  - sig-etcd-amd64
+  - sig-etcd-arm64
   - sig-etcd-presubmits
   - sig-etcd-periodics
   - sig-etcd-postsubmits
@@ -8,6 +10,8 @@ dashboard_groups:
   - sig-etcd-etcd-manager
 
 dashboards:
+  - name: sig-etcd-amd64
+  - name: sig-etcd-arm64
   - name: sig-etcd-presubmits
   - name: sig-etcd-periodics
   - name: sig-etcd-postsubmits
@@ -26,6 +30,19 @@ dashboards:
           value: <test-url>
         - key: etcdVersion
           value: v3.6
+    - name: ci-etcd-robustness-arm64
+      test_group_name: ci-etcd-robustness-arm64
+      file_bug_template:
+        url: https://github.com/etcd-io/etcd/issues/new
+        options:
+        - key: template
+          value: bug-report.yml
+        - key: title
+          value: '[robustness tests] main-arm64: <test-name>'
+        - key: problem
+          value: <test-url>
+        - key: etcdVersion
+          value: v3.6
     - name: ci-etcd-robustness-main-amd64
       test_group_name: ci-etcd-robustness-main-amd64
       file_bug_template:
@@ -35,6 +52,19 @@ dashboards:
           value: bug-report.yml
         - key: title
           value: '[robustness tests] main-amd64: <test-name>'
+        - key: problem
+          value: <test-url>
+        - key: etcdVersion
+          value: v3.6
+    - name: ci-etcd-robustness-main-arm64
+      test_group_name: ci-etcd-robustness-main-arm64
+      file_bug_template:
+        url: https://github.com/etcd-io/etcd/issues/new
+        options:
+        - key: template
+          value: bug-report.yml
+        - key: title
+          value: '[robustness tests] main-arm64: <test-name>'
         - key: problem
           value: <test-url>
         - key: etcdVersion
@@ -52,6 +82,19 @@ dashboards:
           value: <test-url>
         - key: etcdVersion
           value: v3.5
+    - name: ci-etcd-robustness-release35-arm64
+      test_group_name: ci-etcd-robustness-release35-arm64
+      file_bug_template:
+        url: https://github.com/etcd-io/etcd/issues/new
+        options:
+        - key: template
+          value: bug-report.yml
+        - key: title
+          value: '[robustness tests] 3.5-arm64: <test-name>'
+        - key: problem
+          value: <test-url>
+        - key: etcdVersion
+          value: v3.5
     - name: ci-etcd-robustness-release34-amd64
       test_group_name: ci-etcd-robustness-release34-amd64
       file_bug_template:
@@ -61,6 +104,19 @@ dashboards:
           value: bug-report.yml
         - key: title
           value: '[robustness tests] 3.4-amd64: <test-name>'
+        - key: problem
+          value: <test-url>
+        - key: etcdVersion
+          value: v3.4
+    - name: ci-etcd-robustness-release34-arm64
+      test_group_name: ci-etcd-robustness-release34-arm64
+      file_bug_template:
+        url: https://github.com/etcd-io/etcd/issues/new
+        options:
+        - key: template
+          value: bug-report.yml
+        - key: title
+          value: '[robustness tests] 3.4-arm64: <test-name>'
         - key: problem
           value: <test-url>
         - key: etcdVersion
