@@ -18,3 +18,4 @@ dill==0.3.9
 tomlkit==0.13.2
 typing-extensions==4.12.2
 wrapt==1.17.0
+urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
