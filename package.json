@@ -28,7 +28,7 @@
     "eslint": "^8.20.0",
     "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-prefer-arrow": "^1.2.3",
-    "jasmine": "~3.4.0",
+    "jasmine": "~3.6.0",
     "rollup": "2.77.2",
     "rollup-plugin-amd": "4.0.0",
     "rollup-plugin-terser": "5.1.3",
